@@ -11,7 +11,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 // import Image from "next/image";
 
 const navigation = [
-  { name: "Kampus", href: "#", current: true },
+  { name: "Kampus", href: "#", current: false },
   { name: "Jurusan", href: "#", current: false },
   { name: "Beasiswa", href: "#", current: false },
   { name: "Jadwal", href: "#", current: false },
@@ -42,7 +42,6 @@ export default function Example() {
         group bg-transparent data-open:bg-[#0A142F]
         ${scrolled ? "bg-white shadow-md" : "bg-transparent"}
       `}
-      // className="group relative bg-transparent data-open:bg-[#0A142F] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -63,7 +62,11 @@ export default function Example() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <span className="text-2xl font-bold text-blue-900 group-data-open:text-white">
+              <span
+                className={`text-2xl font-bold group-data-open:text-white ${
+                  scrolled ? "text-blue-900" : "text-white"
+                }`}
+              >
                 <Link href="/">GO PTN</Link>
               </span>
             </div>
@@ -76,8 +79,15 @@ export default function Example() {
                     aria-current={item.current ? "page" : undefined}
                     className={classNames(
                       item.current
-                        ? "bg-blue-900 text-white"
-                        : "text-blue-900 hover:bg-blue-900 hover:text-white",
+                        ? // aktif
+                          scrolled
+                          ? "bg-white text-blue-900"
+                          : "bg-blue-900 text-white"
+                        : // tidak aktif
+                        scrolled
+                        ? "text-blue-900 hover:bg-blue-900 hover:text-white"
+                        : "text-white hover:bg-blue-900 hover:text-white",
+
                       "rounded-md px-3 py-2 text-md font-medium"
                     )}
                   >
@@ -89,12 +99,37 @@ export default function Example() {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div className="hidden md:flex items-center space-x-3 ml-auto">
-              <button className="px-4 py-2 bg-blue-900 text-white rounded-md text-sm">
-                Sign In
-              </button>
-              <button className="px-4 py-2 border border-blue-900 text-blue-900 rounded-md text-sm">
-                Sign Up
-              </button>
+              <Link href="/signin">
+                <button
+                  className={`
+                    px-4 py-2 rounded-md text-sm border transition
+                                
+                    ${
+                      scrolled
+                        ? "bg-blue-900 text-white border-blue-900 hover:bg-transparent hover:text-blue-900"
+                        : "bg-blue-900 text-white border-blue-900 hover:bg-transparent hover:text-white"
+                    }
+                  `}
+                >
+                  Sign In
+                </button>
+              </Link>
+
+              <Link href="/signup">
+                <button
+                  className={`
+                    px-4 py-2 rounded-md text-sm border transition
+                    ${
+                      scrolled
+                        ? "text-blue-900 border-blue-900"
+                        : "text-white border-blue-900"
+                    }
+                    hover:bg-blue-900 hover:text-white
+                  `}
+                >
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         </div>
