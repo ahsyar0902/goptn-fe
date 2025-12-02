@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Red_Rose } from "next/font/google";
 import "./globals.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 
 const redRose = Red_Rose({
   subsets: ["latin"],
