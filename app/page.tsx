@@ -2,7 +2,7 @@
 import Hero from "./components/home/Hero";
 import EnteranceInfor from "./components/home/EntranceInfor";
 import PremiumFeature from "./components/home/PremiumFeature";
-// import CollegeSlider from "./components/home/CollegeSlider";
+import { Footer } from "./components/home/Footer";
 
 export default function HomePage() {
   return (
@@ -11,8 +11,8 @@ export default function HomePage() {
       <Hero />
       <EnteranceInfor/>
       <PremiumFeature />
+      <Footer />
       
-      {/* <CollegeSlider /> */}
     </main>
   );
 }
